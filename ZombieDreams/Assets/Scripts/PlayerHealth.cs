@@ -53,6 +53,19 @@ public class PlayerHealth : MonoBehaviour
         spriteRenderer.color = Color.white;
     }
 
+    // Upgrade cards use these two.
+    public void IncreaseMaxHealth(float amount)
+    {
+        maxHealth += amount;
+        CurrentHealth += amount;
+    }
+
+    public void Heal(float amount)
+    {
+        if (IsDead) return;
+        CurrentHealth = Mathf.Min(maxHealth, CurrentHealth + amount);
+    }
+
     void Die()
     {
         IsDead = true;
@@ -70,6 +83,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Restart()
     {
+        Time.timeScale = 1f;   // make sure the new run isn't paused
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
