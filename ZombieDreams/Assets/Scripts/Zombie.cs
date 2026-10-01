@@ -9,6 +9,9 @@ public class Zombie : MonoBehaviour
     // A list of every zombie that exists right now, so weapons can find the nearest one quickly.
     public static readonly List<Zombie> All = new List<Zombie>();
 
+    // Which kind of zombie this is (the Spawner uses it to count them).
+    public string kind = "Sleepwalker";
+
     public float moveSpeed = 1.8f;      // slow! Isaac Jr. walks at 5
     public float contactDamage = 10f;   // taken by the player when touching this zombie
     public float maxHealth = 20f;       // two pillow hits
@@ -27,10 +30,16 @@ public class Zombie : MonoBehaviour
 
     public bool IsDead { get; private set; }
 
-    // Where the zombie's feet are (the sprite's center is about 0.6 units above them).
+    // Roughly how wide the zombie's body is (from its middle to its edge). Beams and sheep use it.
+    public float bodyRadius = 0.3f;
+
+    // How far below the sprite's center the feet are (bigger zombies have a bigger number).
+    public float feetOffset = 0.6f;
+
+    // Where the zombie's feet are.
     public Vector2 FeetPosition
     {
-        get { return (Vector2)transform.position + Vector2.down * 0.6f; }
+        get { return (Vector2)transform.position + Vector2.down * feetOffset; }
     }
 
     private Rigidbody2D body;
@@ -121,7 +130,7 @@ public class Zombie : MonoBehaviour
         if (gemPrefab != null)
         {
             GameObject gem = Instantiate(gemPrefab, FeetPosition, Quaternion.identity);
-            gem.GetComponent<XPGem>().value = xpValue;
+            gem.GetComponent<XPGem>().value = xpValue;   // bigger zombies drop gems worth more XP
         }
 
         Destroy(gameObject);

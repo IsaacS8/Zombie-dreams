@@ -5,6 +5,9 @@
 #   Gem.png     4 frames  16x16  the XP "dream shard" twinkling
 #   Poof.png    6 frames  48x48  the purple dream-smoke puff when a zombie vanishes
 #   Slash.png   3 frames  32x32  Scarlet's claw-mark slash on a zombie
+#   Beam.png    2 frames  96x16  the Night Light beam (points right; the game spins it)
+#   Sheep.png   3 frames  24x24  a Counting Sheep, side view facing right
+#   Ring.png    3 frames  64x64  the Alarm Clock shockwave ring (the game grows it)
 # Colors come from the shared palette in ../isaac-jr/palette.py.
 import os
 import sys
@@ -21,6 +24,9 @@ SHEETS = {
     "Gem": {"prefix": "gem", "frames": 4, "size": 16},
     "Poof": {"prefix": "poof", "frames": 6, "size": 48},
     "Slash": {"prefix": "slash", "frames": 3, "size": 32},
+    "Beam": {"prefix": "beam", "frames": 2, "size": (96, 16)},    # Night Light beam, pointing right
+    "Sheep": {"prefix": "sheep", "frames": 3, "size": 24},        # Counting Sheep (side view, facing right)
+    "Ring": {"prefix": "ring", "frames": 3, "size": 64},          # Alarm Clock shockwave ring
 }
 
 
@@ -30,7 +36,8 @@ def build(only=None):
         if only and name not in only:
             continue
         size = cfg["size"]
-        sheet = Image.new("RGBA", (size * cfg["frames"], size), (0, 0, 0, 0))
+        w, h = size if isinstance(size, tuple) else (size, size)
+        sheet = Image.new("RGBA", (w * cfg["frames"], h), (0, 0, 0, 0))
         for i in range(cfg["frames"]):
             gname = f"{cfg['prefix']}_{i}"
             path = os.path.join(HERE, "grids", gname + ".txt")
@@ -38,13 +45,13 @@ def build(only=None):
                 problems.append(f"missing {gname}.txt")
                 continue
             rows = load_grid(path)
-            if len(rows) != size or any(len(r) != size for r in rows):
-                problems.append(f"{gname}: must be {size}x{size}")
+            if len(rows) != h or any(len(r) != w for r in rows):
+                problems.append(f"{gname}: must be {w}x{h}")
             for y, row in enumerate(rows):
                 for x, ch in enumerate(row):
                     if ch not in PALETTE:
                         problems.append(f"{gname}: unknown character {ch!r} at x={x}, y={y}")
-            sheet.alpha_composite(grid_to_image(rows), (i * size, 0))
+            sheet.alpha_composite(grid_to_image(rows), (i * w, 0))
         if not any(p.startswith(cfg["prefix"]) or f"missing {cfg['prefix']}" in p for p in problems):
             out = os.path.join(ART, name, name + ".png")
             os.makedirs(os.path.dirname(out), exist_ok=True)

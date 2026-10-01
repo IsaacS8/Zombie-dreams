@@ -5,7 +5,10 @@ using UnityEngine.InputSystem;
 
 // LevelUpUI: when Isaac Jr. levels up, the game PAUSES and offers 3 random upgrade cards.
 // Pick one with the mouse, the keys 1 / 2 / 3, or the keyboard arrows / gamepad d-pad + Enter / A button.
-// Every card can be picked up to 5 times. (New weapons and cat upgrades join the pool in later steps.)
+// The cards come from three groups:
+//   * stat cards (Bad Dream, Caffeine, Warm Milk...): each can be picked up to 5 times
+//   * Scarlet's cards (Sharper Claws, Zoomies, Purr): each up to 5 times
+//   * weapon cards: get a NEW weapon, or make a weapon you have one level stronger (up to level 5)
 // For now the cards are drawn with simple code (OnGUI); build step 7 can make them prettier.
 public class LevelUpUI : MonoBehaviour
 {
@@ -14,18 +17,21 @@ public class LevelUpUI : MonoBehaviour
     {
         public string name;
         public string description;
+        public string footer;      // small text at the bottom of the card
         public Action apply;       // what picking it does
-        public int picks;          // how many times it has been picked
+        public int picks;          // how many times it has been picked (stat cards)
         public int maxPicks = 5;
+        public bool isWeapon;      // weapon cards are rebuilt every time, so they are never "used up"
     }
 
-    private readonly List<Card> allCards = new List<Card>();
-    private readonly List<Card> offered = new List<Card>();   // the 3 cards on screen right now
+    private readonly List<Card> statCards = new List<Card>();   // the permanent stat / cat cards
+    private readonly List<Card> offered = new List<Card>();     // the 3 cards on screen right now
 
     private PlayerStats stats;
     private PlayerHealth health;
     private PlayerXP xp;
     private Cat cat;
+    private Weapon[] weapons;
 
     private bool showing;
     private readonly Queue<int> pendingLevels = new Queue<int>();   // level-ups waiting for their turn (several can happen at once)
@@ -41,25 +47,26 @@ public class LevelUpUI : MonoBehaviour
         health = GetComponent<PlayerHealth>();
         xp = GetComponent<PlayerXP>();
         cat = GetComponent<Cat>();
+        weapons = GetComponents<Weapon>();
 
         // The five attack stats from the design doc (they help every weapon and Scarlet):
-        allCards.Add(new Card { name = "Bad Dream", description = "+15% damage", apply = () => stats.damageMultiplier += 0.15f });
-        allCards.Add(new Card { name = "Double Vision", description = "+1 pillow per throw", apply = () => stats.extraProjectiles += 1 });
-        allCards.Add(new Card { name = "Sleep Sprint", description = "+15% projectile speed", apply = () => stats.projectileSpeedMultiplier += 0.15f });
-        allCards.Add(new Card { name = "Caffeine", description = "+12% attack speed", apply = () => stats.attackSpeedMultiplier += 0.12f });
-        allCards.Add(new Card { name = "Big Dreams", description = "+15% attack size", apply = () => stats.attackSizeMultiplier += 0.15f });
+        statCards.Add(new Card { name = "Bad Dream", description = "+15% damage", apply = () => stats.damageMultiplier += 0.15f });
+        statCards.Add(new Card { name = "Double Vision", description = "+1 pillow, beam, sheep or scratch", apply = () => stats.extraProjectiles += 1 });
+        statCards.Add(new Card { name = "Sleep Sprint", description = "+15% projectile speed", apply = () => stats.projectileSpeedMultiplier += 0.15f });
+        statCards.Add(new Card { name = "Caffeine", description = "+12% attack speed", apply = () => stats.attackSpeedMultiplier += 0.12f });
+        statCards.Add(new Card { name = "Big Dreams", description = "+15% attack size", apply = () => stats.attackSizeMultiplier += 0.15f });
 
         // The three survival cards:
-        allCards.Add(new Card { name = "Warm Milk", description = "+20 max HP (and heals 20)", apply = () => health.IncreaseMaxHealth(20f) });
-        allCards.Add(new Card { name = "Fuzzy Slippers", description = "+10% move speed", apply = () => stats.moveSpeedMultiplier += 0.10f });
-        allCards.Add(new Card { name = "Dreamcatcher", description = "+30% pickup radius", apply = () => stats.pickupRadius *= 1.3f });
+        statCards.Add(new Card { name = "Warm Milk", description = "+20 max HP (and heals 20)", apply = () => health.IncreaseMaxHealth(20f) });
+        statCards.Add(new Card { name = "Fuzzy Slippers", description = "+10% move speed", apply = () => stats.moveSpeedMultiplier += 0.10f });
+        statCards.Add(new Card { name = "Dreamcatcher", description = "+30% pickup radius", apply = () => stats.pickupRadius *= 1.3f });
 
         // Scarlet's three cards (only if she's on the team):
         if (cat != null)
         {
-            allCards.Add(new Card { name = "Sharper Claws", description = "Scarlet: +4 scratch damage", apply = () => cat.sharperClawsBonus += 4f });
-            allCards.Add(new Card { name = "Zoomies", description = "Scarlet scratches 25% more often", apply = () => cat.zoomiesMultiplier += 0.25f });
-            allCards.Add(new Card { name = "Purr", description = "Scarlet slowly heals you (+0.5 HP per second)", apply = () => cat.purrHealPerSecond += 0.5f });
+            statCards.Add(new Card { name = "Sharper Claws", description = "Scarlet: +4 scratch damage", apply = () => cat.sharperClawsBonus += 4f });
+            statCards.Add(new Card { name = "Zoomies", description = "Scarlet scratches 25% more often", apply = () => cat.zoomiesMultiplier += 0.25f });
+            statCards.Add(new Card { name = "Purr", description = "Scarlet slowly heals you (+0.5 HP per second)", apply = () => cat.purrHealPerSecond += 0.5f });
         }
     }
 
@@ -77,10 +84,47 @@ public class LevelUpUI : MonoBehaviour
         if (!showing) ShowNext();
     }
 
-    // Pauses the game and picks 3 random cards that haven't been maxed out.
+    // Builds the weapon cards for right now: a "new weapon" card for each weapon we don't have,
+    // and a "next level" card for each weapon that isn't at level 5 yet.
+    List<Card> BuildWeaponCards()
+    {
+        var cards = new List<Card>();
+        foreach (Weapon weapon in weapons)
+        {
+            Weapon w = weapon;   // each card needs its own copy
+            if (!w.Owned)
+            {
+                cards.Add(new Card
+                {
+                    name = "New: " + w.displayName,
+                    description = w.DescribeLevel(1),
+                    footer = "New weapon!",
+                    isWeapon = true,
+                    apply = () => w.LevelUp(),
+                });
+            }
+            else if (w.level < Weapon.MaxLevel)
+            {
+                cards.Add(new Card
+                {
+                    name = w.displayName + " Lv " + (w.level + 1),
+                    description = w.DescribeLevel(w.level + 1),
+                    footer = "Level " + w.level + " > " + (w.level + 1),
+                    isWeapon = true,
+                    apply = () => w.LevelUp(),
+                });
+            }
+        }
+        return cards;
+    }
+
+    // Pauses the game and picks 3 random cards.
     void ShowNext()
     {
-        var available = allCards.FindAll(c => c.picks < c.maxPicks);
+        var available = statCards.FindAll(c => c.picks < c.maxPicks);
+        foreach (Card c in available) c.footer = "Picked " + c.picks + " / " + c.maxPicks;
+        available.AddRange(BuildWeaponCards());
+
         if (available.Count == 0)
         {
             // Everything is maxed: heal a little instead.
@@ -177,20 +221,22 @@ public class LevelUpUI : MonoBehaviour
             Card card = offered[i];
             var rect = new Rect(left + i * (cardWidth + gap), top, cardWidth, cardHeight);
 
-            // Card body (the highlighted one is brighter, with a border).
+            // Card body (the highlighted one is brighter, with a border). Weapon cards are a warmer color.
             if (i == selected)
             {
                 GUI.color = new Color(1f, 0.9f, 0.5f, 1f);
                 GUI.DrawTexture(new Rect(rect.x - 4 * scale, rect.y - 4 * scale, rect.width + 8 * scale, rect.height + 8 * scale), Texture2D.whiteTexture);
             }
-            GUI.color = i == selected ? new Color(0.45f, 0.38f, 0.75f, 1f) : new Color(0.3f, 0.25f, 0.5f, 1f);
+            Color body = card.isWeapon ? new Color(0.5f, 0.3f, 0.45f, 1f) : new Color(0.3f, 0.25f, 0.5f, 1f);
+            if (i == selected) body = Color.Lerp(body, Color.white, 0.18f);
+            GUI.color = body;
             GUI.DrawTexture(rect, Texture2D.whiteTexture);
             GUI.color = Color.white;
 
             GUI.Label(new Rect(rect.x + 10 * scale, rect.y + 26 * scale, rect.width - 20 * scale, 70 * scale), card.name, nameStyle);
             GUI.Label(new Rect(rect.x + 14 * scale, rect.y + 110 * scale, rect.width - 28 * scale, 90 * scale), card.description, descStyle);
             GUI.Label(new Rect(rect.x, rect.y + 8 * scale, rect.width, 20 * scale), "[" + (i + 1) + "]", smallStyle);
-            GUI.Label(new Rect(rect.x, rect.yMax - 32 * scale, rect.width, 24 * scale), "Picked " + card.picks + " / " + card.maxPicks, smallStyle);
+            GUI.Label(new Rect(rect.x, rect.yMax - 32 * scale, rect.width, 24 * scale), card.footer, smallStyle);
 
             // Clicking anywhere on the card picks it.
             if (GUI.Button(rect, GUIContent.none, GUIStyle.none)) Pick(i);

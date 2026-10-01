@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YSort
+  footOffset: 0.75
 --- !u!1 &151517769
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,6 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YSort
+  footOffset: 0.75
 --- !u!1 &280775199
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YSort
+  footOffset: 0.75
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,6 +986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YSort
+  footOffset: 0.75
 --- !u!1 &752620961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1004,6 +1008,9 @@ GameObject:
   - component: {fileID: 752620970}
   - component: {fileID: 752620973}
   - component: {fileID: 752620974}
+  - component: {fileID: 752620977}
+  - component: {fileID: 752620976}
+  - component: {fileID: 752620975}
   m_Layer: 0
   m_Name: Isaac Jr.
   m_TagString: Player
@@ -1253,6 +1260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YSort
+  footOffset: 0.75
 --- !u!114 &752620970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1265,12 +1273,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db1ac516c3764c4d92df7e4a21992d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PillowToss
+  displayName: Weapon
+  level: 0
   pillowPrefab: {fileID: 3716619544576360646, guid: ee3359272574a8d4596826b508f80e62, type: 3}
-  baseCooldown: 0.8
-  baseDamage: 10
   baseSpeed: 9
-  baseCount: 1
-  pierce: 0
   range: 10
 --- !u!114 &752620971
 MonoBehaviour:
@@ -1336,6 +1342,57 @@ MonoBehaviour:
   sharperClawsBonus: 0
   zoomiesMultiplier: 1
   purrHealPerSecond: 0
+--- !u!114 &752620975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752620961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c90d43be6609254bb71b93c76d5f53a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlarmClock
+  displayName: Weapon
+  level: 0
+  ringPrefab: {fileID: 18624956333856363, guid: e02f57a83b43118468d44eda30f90682, type: 3}
+--- !u!114 &752620976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752620961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63f939e7f1294145ad923f3f15b3a73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CountingSheep
+  displayName: Weapon
+  level: 0
+  sheepPrefab: {fileID: 277034409111608957, guid: 842ea3e76c61f10459c0f53baffb2c72, type: 3}
+  baseRadius: 1.4
+  hitCooldown: 0.6
+  hitDistance: 0.6
+--- !u!114 &752620977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752620961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9cbb4b1ac225c7428ba2bc25057a5da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NightLight
+  displayName: Weapon
+  level: 0
+  beamPrefab: {fileID: 247449693297846519, guid: ce361ad33c22d6143ad3e12b376405da, type: 3}
+  baseLength: 3.2
+  halfWidth: 0.4
+  tickInterval: 0.4
 --- !u!1 &935989458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,6 +1545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YSort
+  footOffset: 0.75
 --- !u!1 &1039634004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1679,6 +1737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YSort
+  footOffset: 0.75
 --- !u!1 &1161463765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,6 +1890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YSort
+  footOffset: 0.75
 --- !u!1 &1246374147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,8 +1921,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
   zombiePrefab: {fileID: 4019444926148985476, guid: e1917e6e744a3384d99a69cd19e20941, type: 3}
+  entries:
+  - kind: Sleepwalker
+    prefab: {fileID: 4019444926148985476, guid: e1917e6e744a3384d99a69cd19e20941, type: 3}
+    startMinute: 0
+    weight: 1
+    maxAlive: 0
+  - kind: NightTerror
+    prefab: {fileID: 7759128121411605350, guid: 4f274ad7210dfde41bed701fa77c5ad1, type: 3}
+    startMinute: 1
+    weight: 0.4
+    maxAlive: 30
+  - kind: BigSnorer
+    prefab: {fileID: 194766118545562781, guid: 84556766ab3b309458d0bce59684360c, type: 3}
+    startMinute: 3
+    weight: 0.1
+    maxAlive: 4
   startSpawnsPerSecond: 0.5
-  extraSpawnsPerSecondPerMinute: 0.4
+  extraSpawnsPerSecondPerMinute: 0.3
   maxZombies: 150
 --- !u!4 &1246374149
 Transform:
@@ -2031,6 +2107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YSort
+  footOffset: 0.75
 --- !u!1 &1895805606
 GameObject:
   m_ObjectHideFlags: 0

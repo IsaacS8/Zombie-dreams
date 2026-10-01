@@ -3,32 +3,44 @@ using UnityEngine;
 // PillowToss: Isaac Jr.'s starting weapon. It fires on its own, throwing a pillow at the nearest zombie.
 // Every number is multiplied by PlayerStats, so upgrade cards make it stronger.
 [RequireComponent(typeof(PlayerStats))]
-public class PillowToss : MonoBehaviour
+public class PillowToss : Weapon
 {
     // The pillow to copy (drag Prefabs/Pillow here).
     public GameObject pillowPrefab;
 
-    // Level 1 values. (Weapon levels in a later step make these bigger.)
-    public float baseCooldown = 0.8f;   // seconds between throws
-    public float baseDamage = 10f;
     public float baseSpeed = 9f;
-    public int baseCount = 1;           // pillows per throw
-    public int pierce = 0;              // extra zombies a pillow can pass through
     public float range = 10f;           // only throws if a zombie is this close
 
-    private PlayerStats stats;
-    private PlayerHealth health;
     private float cooldownLeft;
 
-    void Awake()
+    // What each weapon level gives (level 1 is the starting weapon):
+    float BaseDamage { get { return level >= 5 ? 20f : (level >= 2 ? 14f : 10f); } }
+    int BaseCount { get { return level >= 3 ? 2 : 1; } }
+    float BaseCooldown { get { return level >= 4 ? 0.64f : 0.8f; } }
+    int Pierce { get { return level >= 5 ? 1 : 0; } }
+
+    public override string DescribeLevel(int levelToDescribe)
     {
-        stats = GetComponent<PlayerStats>();
-        health = GetComponent<PlayerHealth>();
+        switch (levelToDescribe)
+        {
+            case 1: return "Throws a pillow at the nearest zombie";
+            case 2: return "+40% damage";
+            case 3: return "+1 pillow per throw";
+            case 4: return "Throws 25% faster";
+            default: return "Pillows go through 1 zombie, and hit harder";
+        }
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        displayName = "Pillow Toss";
+        if (level == 0) level = 1;   // Isaac Jr. starts with this weapon
     }
 
     void Update()
     {
-        if (pillowPrefab == null || (health != null && health.IsDead)) return;
+        if (!Owned || pillowPrefab == null || Dead) return;
 
         cooldownLeft -= Time.deltaTime;
         if (cooldownLeft > 0f) return;
@@ -38,7 +50,7 @@ public class PillowToss : MonoBehaviour
 
         Throw(target);
         // Attack speed makes the cooldown shorter.
-        cooldownLeft = baseCooldown / stats.attackSpeedMultiplier;
+        cooldownLeft = BaseCooldown / stats.attackSpeedMultiplier;
     }
 
     // Loops over all zombies and returns the closest one within range (or null).
@@ -67,22 +79,23 @@ public class PillowToss : MonoBehaviour
         Vector2 start = (Vector2)transform.position + Vector2.up * 0.1f;
         Vector2 aim = (target.FeetPosition - start).normalized;
 
-        int count = baseCount + stats.extraProjectiles;
+        int count = BaseCount + stats.extraProjectiles;
         float spreadDegrees = 12f;   // extra pillows fan out a little
 
         for (int i = 0; i < count; i++)
         {
-            // Spread the pillows evenly around the aim direction.
-            float angle = (i - (count - 1) / 2f) * spreadDegrees;
+            // The first pillow goes straight at the target. Extra pillows fan out on alternate sides:
+            // 0, +12, -12, +24, -24 degrees...
+            float angle = ((i + 1) / 2) * spreadDegrees * (i % 2 == 1 ? 1f : -1f);
             Vector2 direction = Quaternion.Euler(0f, 0f, angle) * aim;
 
             GameObject pillow = Instantiate(pillowPrefab, start, Quaternion.identity);
             pillow.GetComponent<Projectile>().Launch(
                 direction,
-                baseDamage * stats.damageMultiplier,
+                BaseDamage * stats.damageMultiplier,
                 baseSpeed * stats.projectileSpeedMultiplier,
                 stats.attackSizeMultiplier,
-                pierce);
+                Pierce);
         }
     }
 }

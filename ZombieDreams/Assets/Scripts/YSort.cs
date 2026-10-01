@@ -7,6 +7,10 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class YSort : MonoBehaviour
 {
+    // How far below the sprite's center the feet are. Characters sort by their FEET.
+    // (1.5-unit tall sprites: 0.75. The bigger Big Snorer uses 1.0.)
+    public float footOffset = 0.75f;
+
     private SpriteRenderer spriteRenderer;
 
     void Awake()
@@ -17,6 +21,6 @@ public class YSort : MonoBehaviour
     // LateUpdate runs after movement, so the order always matches where we ended up.
     void LateUpdate()
     {
-        spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y * 100f);
+        spriteRenderer.sortingOrder = -Mathf.RoundToInt((transform.position.y - footOffset) * 100f);
     }
 }
