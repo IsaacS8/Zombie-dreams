@@ -8,8 +8,8 @@ public class Spawner : MonoBehaviour
     public GameObject zombiePrefab;
 
     // Zombies per second at the start, and how many MORE per second you get every minute.
-    public float startSpawnsPerSecond = 0.7f;
-    public float extraSpawnsPerSecondPerMinute = 0.6f;
+    public float startSpawnsPerSecond = 0.5f;
+    public float extraSpawnsPerSecondPerMinute = 0.4f;
 
     // Never have more than this many zombies alive at once (keeps the game running smoothly).
     public int maxZombies = 150;
@@ -39,7 +39,7 @@ public class Spawner : MonoBehaviour
         while (spawnProgress >= 1f)
         {
             spawnProgress -= 1f;
-            if (FindObjectsByType<Zombie>(FindObjectsSortMode.None).Length < maxZombies)
+            if (Zombie.All.Count < maxZombies)
                 SpawnOne();
         }
     }

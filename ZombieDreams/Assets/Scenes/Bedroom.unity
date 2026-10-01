@@ -999,6 +999,9 @@ GameObject:
   - component: {fileID: 752620967}
   - component: {fileID: 752620969}
   - component: {fileID: 752620968}
+  - component: {fileID: 752620972}
+  - component: {fileID: 752620971}
+  - component: {fileID: 752620970}
   m_Layer: 0
   m_Name: Isaac Jr.
   m_TagString: Player
@@ -1068,7 +1071,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -1248,6 +1251,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YSort
+--- !u!114 &752620970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752620961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db1ac516c3764c4d92df7e4a21992d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PillowToss
+  pillowPrefab: {fileID: 3716619544576360646, guid: ee3359272574a8d4596826b508f80e62, type: 3}
+  baseCooldown: 0.8
+  baseDamage: 10
+  baseSpeed: 9
+  baseCount: 1
+  pierce: 0
+  range: 10
+--- !u!114 &752620971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752620961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b7e9d1059ac59e4e9fb61265c8f0527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerXP
+  level: 1
+  xp: 0
+--- !u!114 &752620972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752620961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db838691eb796864bbaf30718f494662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  damageMultiplier: 1
+  extraProjectiles: 0
+  projectileSpeedMultiplier: 1
+  attackSpeedMultiplier: 1
+  attackSizeMultiplier: 1
+  pickupRadius: 1.5
 --- !u!1 &935989458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,8 +1827,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
   zombiePrefab: {fileID: 4019444926148985476, guid: e1917e6e744a3384d99a69cd19e20941, type: 3}
-  startSpawnsPerSecond: 0.7
-  extraSpawnsPerSecondPerMinute: 0.6
+  startSpawnsPerSecond: 0.5
+  extraSpawnsPerSecondPerMinute: 0.4
   maxZombies: 150
 --- !u!4 &1246374149
 Transform:
