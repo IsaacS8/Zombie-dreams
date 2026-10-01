@@ -45,7 +45,11 @@ public class PlayerMovement : MonoBehaviour
 
     // Actions must be switched on to work, and off when we're disabled.
     void OnEnable() { moveAction.Enable(); }
-    void OnDisable() { moveAction.Disable(); }
+    void OnDisable()
+    {
+        moveAction.Disable();
+        moveInput = Vector2.zero;   // so the walk animation stops when movement is switched off
+    }
 
     void Update()
     {

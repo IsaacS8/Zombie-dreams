@@ -56,6 +56,7 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         IsDead = true;
+        StopAllCoroutines();   // stop the hit blink so it can't undo the tint below
         spriteRenderer.color = new Color(1f, 0.5f, 0.5f, 1f);
 
         // Stop walking and animating.
