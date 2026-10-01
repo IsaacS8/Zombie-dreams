@@ -1,5 +1,29 @@
-# Zombie-dreams
-test game on unity vibe coding
+# Zombie Dreams
+
+A small top-down 2D wave-survival game made in Unity as a beginner project. You are **Isaac Jr.**, asleep with the cat **Scarlet** on your shoulder, and sleepy pajama zombies invade your dream. Your weapons fire on their own, you pick upgrades as you level up, and you keep walking to survive. Pixel art, single player.
+
+## Status: finished as a beginner project
+
+It runs and plays. Playtested to level 32.
+
+**Built (design doc build steps 1 to 6):**
+- Isaac Jr. walks around a big bedroom (WASD or gamepad) with a smooth follow camera and 8-direction animated pixel art
+- Three zombie kinds that chase you: Sleepwalker, Night Terror (fast, from minute 1) and Big Snorer (huge, from minute 3)
+- Four auto weapons with 5 levels each: Pillow Toss, Night Light, Counting Sheep, Alarm Clock
+- Scarlet the cat scratches zombies on her own, with 3 upgrade cards of her own
+- XP gems, a level-up screen with 3 random upgrade cards (11 stat/cat cards plus weapon cards)
+- HP bar, XP bar, "Bad dream..." and a restart when you go down
+
+**Not built (left out on purpose):**
+- Step 7: the 10-minute timer, the "You woke up!" win screen, a proper game-over screen and the main menu. For now the game runs until you die, then restarts.
+- Step 8: effects (screen shake, lights, bloom, particles) and sound
+- Ideas if you ever come back: sound from a free CC0 pack, card icons, a bigger difficulty curve late in the run, the design doc's lighting and weather
+
+The full plan is in [docs/design.md](docs/design.md).
+
+## Getting this onto GitHub's main branch
+
+The work was built as stacked branches (`claude/step1-player-movement` up to `claude/step6-weapons-zombies`), each one on top of the last. The last branch contains everything, so you only need ONE pull request: `claude/step6-weapons-zombies` into `main`. You can ignore the five smaller ones.
 
 The design doc is in [docs/design.md](docs/design.md).
 
