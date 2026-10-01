@@ -10,7 +10,7 @@ The design doc is in [docs/design.md](docs/design.md).
 3. In the **Project** window, open `Assets/Scenes/Bedroom`.
 4. Press **Play**. Move Isaac Jr. with WASD, the arrow keys, or a gamepad's left stick.
 
-## What's in the project (steps 1-4)
+## What's in the project (steps 1-5)
 
 | File | What it does |
 |---|---|
@@ -23,12 +23,13 @@ The design doc is in [docs/design.md](docs/design.md).
 | `Assets/Scripts/PlayerStats.cs` | All the upgradable numbers in one place (damage, projectile count, projectile speed, attack speed, attack size, pickup radius). Step 4's level-up cards change these. |
 | `Assets/Scripts/XPGem.cs` | The "dream shard" a defeated zombie drops. Flies to Isaac Jr. when he gets close and gives him XP. |
 | `Assets/Scripts/PlayerXP.cs` | Collects XP, tracks the level, shows a simple XP bar. |
-| `Assets/Scripts/LevelUpUI.cs` | The level-up screen: the game pauses and offers 3 random upgrade cards (pick with the mouse, keys 1-3, or arrows/d-pad + Enter/A). 8 cards for now (the 5 attack stats plus Max HP, Move Speed, Pickup Radius), each up to 5 times. |
+| `Assets/Scripts/LevelUpUI.cs` | The level-up screen: the game pauses and offers 3 random upgrade cards (pick with the mouse, keys 1-3, or arrows/d-pad + Enter/A). 11 cards: the 5 attack stats, Max HP, Move Speed, Pickup Radius and Scarlet's 3 (Sharper Claws, Zoomies, Purr), each up to 5 times. |
+| `Assets/Scripts/Cat.cs` | Scarlet. Every 1.6 s she scratches the nearest zombie within 3 units (claw-mark effect), using the same attack stats as the pillows. She can't be hurt. |
 | `Assets/Scripts/OneShotAnimation.cs` | Plays the purple "poof" puff once and removes it. |
 | `Assets/Scripts/Spawner.cs` | Spawns zombies on a ring just off-screen. Starts at 0.5 per second and speeds up by 0.4 per second every minute (max 150 alive). All numbers are in the Inspector. |
 | `Assets/Scripts/PlayerHealth.cs` | 100 HP, a short invulnerable blink after each hit, a simple HP bar, and "Bad dream..." then a restart at 0 HP. (The real HUD and game-over screens come in step 7.) |
 | `Assets/Scripts/YSort.cs` | Draws things lower on screen in front of things higher up, so you can walk behind toy blocks and zombies. |
-| `Assets/Prefabs/` | `Sleepwalker` (the zombie, the Spawner copies it), `Pillow` (the thrown pillow), `XPGem` and `Poof`. |
+| `Assets/Prefabs/` | `Sleepwalker` (the zombie, the Spawner copies it), `Pillow` (the thrown pillow), `XPGem`, `Poof` and `Slash` (Scarlet's claw marks). |
 | `Assets/Scripts/PlayerAnimator.cs` | Picks which picture of Isaac Jr. to show: 8 facing directions, 2 idle frames, 4 walk frames. |
 | `Assets/Art/IsaacJr/IsaacJr.png` | Isaac Jr. (pajamas, no sword) with Scarlet the cat on his shoulder: 8 directions x 6 frames, 48x48 each. Generated, see below. |
 | `Assets/Art/` | Placeholder toy block and carpet tile. |

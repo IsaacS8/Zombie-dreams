@@ -25,6 +25,7 @@ public class LevelUpUI : MonoBehaviour
     private PlayerStats stats;
     private PlayerHealth health;
     private PlayerXP xp;
+    private Cat cat;
 
     private bool showing;
     private readonly Queue<int> pendingLevels = new Queue<int>();   // level-ups waiting for their turn (several can happen at once)
@@ -39,6 +40,7 @@ public class LevelUpUI : MonoBehaviour
         stats = GetComponent<PlayerStats>();
         health = GetComponent<PlayerHealth>();
         xp = GetComponent<PlayerXP>();
+        cat = GetComponent<Cat>();
 
         // The five attack stats from the design doc (they help every weapon and Scarlet):
         allCards.Add(new Card { name = "Bad Dream", description = "+15% damage", apply = () => stats.damageMultiplier += 0.15f });
@@ -51,6 +53,14 @@ public class LevelUpUI : MonoBehaviour
         allCards.Add(new Card { name = "Warm Milk", description = "+20 max HP (and heals 20)", apply = () => health.IncreaseMaxHealth(20f) });
         allCards.Add(new Card { name = "Fuzzy Slippers", description = "+10% move speed", apply = () => stats.moveSpeedMultiplier += 0.10f });
         allCards.Add(new Card { name = "Dreamcatcher", description = "+30% pickup radius", apply = () => stats.pickupRadius *= 1.3f });
+
+        // Scarlet's three cards (only if she's on the team):
+        if (cat != null)
+        {
+            allCards.Add(new Card { name = "Sharper Claws", description = "Scarlet: +4 scratch damage", apply = () => cat.sharperClawsBonus += 4f });
+            allCards.Add(new Card { name = "Zoomies", description = "Scarlet scratches 25% more often", apply = () => cat.zoomiesMultiplier += 0.25f });
+            allCards.Add(new Card { name = "Purr", description = "Scarlet slowly heals you (+0.5 HP per second)", apply = () => cat.purrHealPerSecond += 0.5f });
+        }
     }
 
     void OnEnable() { xp.LeveledUp += OnLeveledUp; }

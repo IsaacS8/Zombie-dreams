@@ -4,6 +4,7 @@
 #   Pillow.png  1 frame   24x24  the thrown pillow (the game spins it)
 #   Gem.png     4 frames  16x16  the XP "dream shard" twinkling
 #   Poof.png    6 frames  48x48  the purple dream-smoke puff when a zombie vanishes
+#   Slash.png   3 frames  32x32  Scarlet's claw-mark slash on a zombie
 # Colors come from the shared palette in ../isaac-jr/palette.py.
 import os
 import sys
@@ -19,6 +20,7 @@ SHEETS = {
     "Pillow": {"prefix": "pillow", "frames": 1, "size": 24},
     "Gem": {"prefix": "gem", "frames": 4, "size": 16},
     "Poof": {"prefix": "poof", "frames": 6, "size": 48},
+    "Slash": {"prefix": "slash", "frames": 3, "size": 32},
 }
 
 
