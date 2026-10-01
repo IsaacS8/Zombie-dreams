@@ -17,6 +17,20 @@ The design doc is in [docs/design.md](docs/design.md).
 | `Assets/Scripts/PlayerMovement.cs` | Reads WASD / arrows / left stick with the new Input System and moves Isaac Jr.'s Rigidbody2D. Change `Move Speed` in the Inspector. |
 | `Assets/Scripts/CameraFollow.cs` | On the Main Camera. Smoothly glides after the player. Lower `Smooth Time` for a snappier camera. |
 | `Assets/Scenes/Bedroom.unity` | The arena: a 100x100 tiled carpet floor, 8 toy blocks you bump into, Isaac Jr., and the camera. |
-| `Assets/Art/` | 16x16 placeholder pixel art (Isaac Jr., toy block, carpet tile). Swap in real art later. |
+| `Assets/Scripts/PlayerAnimator.cs` | Picks which picture of Isaac Jr. to show: 8 facing directions, 2 idle frames, 4 walk frames. |
+| `Assets/Art/IsaacJr/IsaacJr.png` | Isaac Jr. (pajamas, no sword) with Scarlet the cat on his shoulder: 8 directions x 6 frames, 48x48 each. Generated, see below. |
+| `Assets/Art/` | Placeholder toy block and carpet tile. |
+| `art-source/isaac-jr/` | The source for Isaac Jr. and Scarlet: text-grid sprites in `grids/` (one letter = one pixel, colors in `palette.py`), `layout.json` (which view and where Scarlet sits per direction). |
 
 ![Step 1 preview](docs/step1-preview.png)
+
+## Rebuilding Isaac Jr.'s sprite sheet
+
+Needs Python with Pillow (`pip install pillow`). From `art-source/isaac-jr`:
+
+```
+python build.py          # full build once every frame is painted
+python build_rough.py    # fills any missing frame with a stand-in, so it always works
+```
+
+Both write `ZombieDreams/Assets/Art/IsaacJr/IsaacJr.png`. Unity re-imports it automatically.

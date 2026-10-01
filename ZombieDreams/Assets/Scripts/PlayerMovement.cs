@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private Vector2 moveInput;
 
+    // Other scripts (like PlayerAnimator) can read which way the player is pushing the stick/keys.
+    public Vector2 MoveInput => moveInput;
+
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
