@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction moveAction;
     private Rigidbody2D body;
     private Vector2 moveInput;
+    private PlayerStats stats;
 
     // Other scripts (like PlayerAnimator) can read which way the player is pushing the stick/keys.
     public Vector2 MoveInput => moveInput;
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
+        stats = GetComponent<PlayerStats>();
 
         // Create a Move action that gives us a direction (a Vector2).
         moveAction = new InputAction("Move", InputActionType.Value);
@@ -60,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         // Physics happens in FixedUpdate. Setting the velocity moves the player.
-        body.linearVelocity = moveInput * moveSpeed;
+        float multiplier = stats != null ? stats.moveSpeedMultiplier : 1f;   // upgrades make him faster
+        body.linearVelocity = moveInput * moveSpeed * multiplier;
     }
 }

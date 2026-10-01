@@ -12,6 +12,9 @@ public class PlayerStats : MonoBehaviour
     public float attackSpeedMultiplier = 1f;     // "Caffeine":      +12% attack speed per pick
     public float attackSizeMultiplier = 1f;      // "Big Dreams":    +15% attack size per pick
 
+    // Survival stats.
+    public float moveSpeedMultiplier = 1f;       // "Fuzzy Slippers": +10% walking speed per pick
+
     // How close an XP gem has to be before it flies to Isaac Jr.
     public float pickupRadius = 1.5f;
 
