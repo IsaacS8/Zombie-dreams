@@ -1,0 +1,130 @@
+{
+  "directions": [
+    "down",
+    "down_right",
+    "right",
+    "up_right",
+    "up",
+    "up_left",
+    "left",
+    "down_left"
+  ],
+  "animations": {
+    "idle": 2,
+    "walk": 4
+  },
+  "shoulder_bob": {
+    "idle": [
+      0,
+      1
+    ],
+    "walk": [
+      0,
+      -1,
+      0,
+      -1
+    ]
+  },
+  "cat_frames": {
+    "idle": [
+      0,
+      1
+    ],
+    "walk": [
+      0,
+      0,
+      1,
+      1
+    ]
+  },
+  "layout": {
+    "down": {
+      "body": "down",
+      "mirror": false,
+      "cat": "front",
+      "cat_mirror": false,
+      "cat_pos": [
+        30,
+        10
+      ],
+      "cat_layer": "front"
+    },
+    "down_right": {
+      "body": "down_right",
+      "mirror": false,
+      "cat": "three_quarter",
+      "cat_mirror": false,
+      "cat_pos": [
+        30,
+        9
+      ],
+      "cat_layer": "front"
+    },
+    "right": {
+      "body": "right",
+      "mirror": false,
+      "cat": "side",
+      "cat_mirror": false,
+      "cat_pos": [
+        6,
+        10
+      ],
+      "cat_layer": "front"
+    },
+    "up_right": {
+      "body": "up_right",
+      "mirror": false,
+      "cat": "back",
+      "cat_mirror": false,
+      "cat_pos": [
+        6,
+        10
+      ],
+      "cat_layer": "front"
+    },
+    "up": {
+      "body": "up",
+      "mirror": false,
+      "cat": "back",
+      "cat_mirror": false,
+      "cat_pos": [
+        5,
+        10
+      ],
+      "cat_layer": "front"
+    },
+    "up_left": {
+      "body": "up_right",
+      "mirror": true,
+      "cat": "back",
+      "cat_mirror": true,
+      "cat_pos": [
+        27,
+        10
+      ],
+      "cat_layer": "front"
+    },
+    "left": {
+      "body": "right",
+      "mirror": true,
+      "cat": "side",
+      "cat_mirror": true,
+      "cat_pos": [
+        26,
+        10
+      ],
+      "cat_layer": "front"
+    },
+    "down_left": {
+      "body": "down_right",
+      "mirror": true,
+      "cat": "three_quarter",
+      "cat_mirror": true,
+      "cat_pos": [
+        2,
+        9
+      ],
+      "cat_layer": "front"
+    }
+  }
+}
