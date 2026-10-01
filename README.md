@@ -19,7 +19,7 @@ It runs and plays. Playtested to level 32.
 - Step 8: effects (screen shake, lights, bloom, particles) and sound
 - Ideas if you ever come back: sound from a free CC0 pack, card icons, a bigger difficulty curve late in the run, the design doc's lighting and weather
 
-The full plan is in [docs/design.md](docs/design.md).
+The full plan is in [docs/design.md](docs/design.md), and everything left to do, in order, is in **[docs/TODO.md](docs/TODO.md)** (start there if you come back).
 
 ## Getting this onto GitHub's main branch
 
