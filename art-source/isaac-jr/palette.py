@@ -50,6 +50,12 @@ PALETTE = {
     "u": (128, 120, 140),      # zombie hair (dull gray-purple, bed head)
     "U": (170, 162, 182),      # zombie hair highlight
     "v": (96, 88, 108),        # zombie hair shadow
+
+    # Items and effects: dream-shard (XP gem) teal, dream-smoke purple
+    "i": (62, 176, 196),       # gem mid
+    "I": (140, 230, 232),      # gem highlight
+    "J": (30, 104, 150),       # gem shadow
+    "D": (214, 198, 246),      # dream smoke, lightest
 }
 
 FRAME_SIZE = 48  # every body frame is 48 x 48 pixels; feet touch the bottom row
