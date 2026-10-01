@@ -4,7 +4,7 @@ Version 0.2 · 2026-10-01
 
 ## Pitch
 
-A small top-down 2D wave-survival game. You fall asleep with your cat on your shoulder, and zombies invade your dream. Your weapons fire on their own, the cat attacks too, and you pick upgrades as you level up. Survive 10 minutes to wake up.
+A small top-down 2D wave-survival game. You play as **Isaac Jr.**, asleep with the cat **Scarlet** on your shoulder, and zombies invade your dream. Your weapons fire on their own, the cat attacks too, and you pick upgrades as you level up. Survive 10 minutes to wake up.
 
 Inspired by Megabonk and Vampire Survivors, but not a copy. This is a **beginner, vibe-coded project**, so the scope is kept small on purpose.
 
@@ -15,7 +15,7 @@ Inspired by Megabonk and Vampire Survivors, but not a copy. This is a **beginner
 
 ## What makes it distinct
 
-- **The cat on your shoulder.** It attacks on its own, and some upgrades in the level-up pool are cat upgrades. The cat cannot be killed, but if you die, it goes down with you.
+- **Scarlet, the cat on your shoulder.** She attacks on her own, and some upgrades in the level-up pool are for her. She cannot be killed, but if you die, she goes down with you.
 - **Cozy-creepy dream setting.** Sleepy zombies in pajamas, a giant bedroom as the arena, soft pastel colors. Not gory.
 
 ## Core loop
@@ -28,17 +28,17 @@ Inspired by Megabonk and Vampire Survivors, but not a copy. This is a **beginner
 
 There is no dash, no special buttons and no meta progression. Moving is the only skill.
 
-## Player
+## Player: Isaac Jr.
 
 - Stats: Max HP, Move Speed, Damage, Pickup Radius.
 - Starts with one weapon (Pillow Toss).
 - Can hold up to 4 weapons.
 
-## The cat
+## The cat: Scarlet
 
-- Sits on the player's shoulder the whole run and moves with them.
+- Sits on Isaac Jr.'s shoulder for the whole run.
 - Attacks the nearest zombie every couple of seconds (a scratch).
-- Cannot take damage or die. When the player dies, the cat is gone too and the run ends.
+- Cannot take damage or die. When Isaac Jr. dies, Scarlet goes down too and the run ends.
 - Has 3 upgrades in the level-up pool:
   - **Sharper Claws:** more scratch damage.
   - **Zoomies:** scratches more often.
