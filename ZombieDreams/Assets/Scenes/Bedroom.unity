@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 48360536}
   - component: {fileID: 48360538}
   - component: {fileID: 48360537}
+  - component: {fileID: 48360539}
   m_Layer: 0
   m_Name: Toy Block 1
   m_TagString: Untagged
@@ -258,6 +259,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &48360539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48360535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!1 &151517769
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +282,7 @@ GameObject:
   - component: {fileID: 151517770}
   - component: {fileID: 151517772}
   - component: {fileID: 151517771}
+  - component: {fileID: 151517773}
   m_Layer: 0
   m_Name: Toy Block 7
   m_TagString: Untagged
@@ -397,6 +411,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &151517773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151517769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!1 &280775199
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +434,7 @@ GameObject:
   - component: {fileID: 280775200}
   - component: {fileID: 280775202}
   - component: {fileID: 280775201}
+  - component: {fileID: 280775203}
   m_Layer: 0
   m_Name: Toy Block 4
   m_TagString: Untagged
@@ -536,6 +563,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &280775203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280775199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,6 +842,7 @@ GameObject:
   - component: {fileID: 652161012}
   - component: {fileID: 652161014}
   - component: {fileID: 652161013}
+  - component: {fileID: 652161015}
   m_Layer: 0
   m_Name: Toy Block 3
   m_TagString: Untagged
@@ -931,6 +971,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &652161015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652161011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!1 &752620961
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,6 +997,8 @@ GameObject:
   - component: {fileID: 752620963}
   - component: {fileID: 752620962}
   - component: {fileID: 752620967}
+  - component: {fileID: 752620969}
+  - component: {fileID: 752620968}
   m_Layer: 0
   m_Name: Isaac Jr.
   m_TagString: Player
@@ -1167,6 +1221,33 @@ MonoBehaviour:
   - {fileID: 881223123, guid: 93b531c157ba62d499d8e8db543f7a32, type: 3}
   walkFramesPerSecond: 8
   idleFramesPerSecond: 2
+--- !u!114 &752620968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752620961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0e7c825cc6a8f4ca729cae2928e11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 100
+  invulnerableSeconds: 0.6
+  restartDelay: 3
+--- !u!114 &752620969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752620961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!1 &935989458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,6 +1259,7 @@ GameObject:
   - component: {fileID: 935989459}
   - component: {fileID: 935989461}
   - component: {fileID: 935989460}
+  - component: {fileID: 935989462}
   m_Layer: 0
   m_Name: Toy Block 2
   m_TagString: Untagged
@@ -1306,6 +1388,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &935989462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935989458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!1 &1039634004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1356,6 +1450,7 @@ GameObject:
   - component: {fileID: 1144927241}
   - component: {fileID: 1144927243}
   - component: {fileID: 1144927242}
+  - component: {fileID: 1144927244}
   m_Layer: 0
   m_Name: Toy Block 5
   m_TagString: Untagged
@@ -1484,6 +1579,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &1144927244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144927240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!1 &1161463765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1495,6 +1602,7 @@ GameObject:
   - component: {fileID: 1161463766}
   - component: {fileID: 1161463768}
   - component: {fileID: 1161463767}
+  - component: {fileID: 1161463769}
   m_Layer: 0
   m_Name: Toy Block 6
   m_TagString: Untagged
@@ -1623,6 +1731,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &1161463769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161463765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
+--- !u!1 &1246374147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1246374149}
+  - component: {fileID: 1246374148}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1246374148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246374147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933bbe9355838fb49a021e651e5c22e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Spawner
+  zombiePrefab: {fileID: 4019444926148985476, guid: e1917e6e744a3384d99a69cd19e20941, type: 3}
+  startSpawnsPerSecond: 0.7
+  extraSpawnsPerSecondPerMinute: 0.6
+  maxZombies: 150
+--- !u!4 &1246374149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246374147}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1842815024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,6 +1802,7 @@ GameObject:
   - component: {fileID: 1842815025}
   - component: {fileID: 1842815027}
   - component: {fileID: 1842815026}
+  - component: {fileID: 1842815028}
   m_Layer: 0
   m_Name: Toy Block 8
   m_TagString: Untagged
@@ -1762,6 +1931,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &1842815028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842815024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c64a4f5256e4d4fab26981fc295e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!1 &1895805606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,7 +2007,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -10
+  m_SortingOrder: -32000
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 40abbcb1734142c44879d3aa0501b4e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1863,3 +2044,4 @@ SceneRoots:
   - {fileID: 1895805608}
   - {fileID: 1039634005}
   - {fileID: 752620966}
+  - {fileID: 1246374149}

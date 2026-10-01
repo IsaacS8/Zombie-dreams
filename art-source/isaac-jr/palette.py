@@ -36,6 +36,20 @@ PALETTE = {
     "W": (252, 240, 226),      # cat cream (muzzle, chest, paws)
     "g": (92, 178, 96),        # cat eyes (green)
     "n": (236, 124, 146),      # cat nose / inner ears
+
+    # Zombies (sleepwalkers): sickly green skin, purple pajamas
+    "z": (88, 128, 92),        # zombie skin shadow
+    "Z": (126, 170, 120),      # zombie skin
+    "x": (172, 208, 150),      # zombie skin highlight
+    "k": (52, 36, 66),         # zombie eyes (half-closed, sleepy)
+    "e": (236, 232, 190),      # zombie eye white / bags highlight
+    "a": (84, 64, 128),        # zombie pajama shadow
+    "A": (130, 106, 184),      # zombie pajama
+    "d": (180, 160, 226),      # zombie pajama highlight
+    "l": (255, 236, 150),      # zombie pajama print (moons/stars, pale yellow)
+    "u": (128, 120, 140),      # zombie hair (dull gray-purple, bed head)
+    "U": (170, 162, 182),      # zombie hair highlight
+    "v": (96, 88, 108),        # zombie hair shadow
 }
 
 FRAME_SIZE = 48  # every body frame is 48 x 48 pixels; feet touch the bottom row

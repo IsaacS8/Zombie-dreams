@@ -10,16 +10,22 @@ The design doc is in [docs/design.md](docs/design.md).
 3. In the **Project** window, open `Assets/Scenes/Bedroom`.
 4. Press **Play**. Move Isaac Jr. with WASD, the arrow keys, or a gamepad's left stick.
 
-## What's in the project (step 1)
+## What's in the project (steps 1-2)
 
 | File | What it does |
 |---|---|
 | `Assets/Scripts/PlayerMovement.cs` | Reads WASD / arrows / left stick with the new Input System and moves Isaac Jr.'s Rigidbody2D. Change `Move Speed` in the Inspector. |
 | `Assets/Scripts/CameraFollow.cs` | On the Main Camera. Smoothly glides after the player. Lower `Smooth Time` for a snappier camera. |
 | `Assets/Scenes/Bedroom.unity` | The arena: a 100x100 tiled carpet floor, 8 toy blocks you bump into, Isaac Jr., and the camera. |
+| `Assets/Scripts/Zombie.cs` | The Sleepwalker: walks in a straight line at Isaac Jr. (speed 1.8, he walks at 5) and hurts him on touch. Flips to face him and plays its 4 walk frames. |
+| `Assets/Scripts/Spawner.cs` | Spawns zombies on a ring just off-screen. Starts at 0.7 per second and speeds up by 0.6 per second every minute (max 150 alive). All numbers are in the Inspector. |
+| `Assets/Scripts/PlayerHealth.cs` | 100 HP, a short invulnerable blink after each hit, a simple HP bar, and "Bad dream..." then a restart at 0 HP. (The real HUD and game-over screens come in step 7.) |
+| `Assets/Scripts/YSort.cs` | Draws things lower on screen in front of things higher up, so you can walk behind toy blocks and zombies. |
+| `Assets/Prefabs/Sleepwalker.prefab` | The zombie, ready to copy. Drag it onto the Spawner's `Zombie Prefab` slot. |
 | `Assets/Scripts/PlayerAnimator.cs` | Picks which picture of Isaac Jr. to show: 8 facing directions, 2 idle frames, 4 walk frames. |
 | `Assets/Art/IsaacJr/IsaacJr.png` | Isaac Jr. (pajamas, no sword) with Scarlet the cat on his shoulder: 8 directions x 6 frames, 48x48 each. Generated, see below. |
 | `Assets/Art/` | Placeholder toy block and carpet tile. |
+| `art-source/sleepwalker/` | The Sleepwalker zombie, same text-grid method. `python build.py` there rebuilds `Assets/Art/Sleepwalker/Sleepwalker.png`. |
 | `art-source/isaac-jr/` | The source for Isaac Jr. and Scarlet: text-grid sprites in `grids/` (one letter = one pixel, colors in `palette.py`), `layout.json` (which view and where Scarlet sits per direction). |
 
 ![Step 1 preview](docs/step1-preview.png)
